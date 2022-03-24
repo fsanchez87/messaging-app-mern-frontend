@@ -1,4 +1,6 @@
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
+import MicIcon from '@mui/icons-material/Mic';
+import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import AttachFile from "@mui/icons-material/AttachFile";
 import { Avatar, IconButton } from "@mui/material";
 import React, { useState, useEffect } from "react";
@@ -47,7 +49,14 @@ const Chat = () => {
           <span className="chat__timestamp">{new Date().toUTCString()}</span>
         </div>
       </div>
-      <div className="chat__footer"></div>
+      <div className="chat__footer">
+        <InsertEmoticonIcon />
+        <form>
+          <input placeholder="Type a message" type="text" />
+          <button type="submit">Send a message</button>
+        </form>
+        <MicIcon/>
+      </div>
     </div>
   );
 };

@@ -6,7 +6,7 @@
 .sidebar__header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 28px;
   border-right: 1px solid lightgrey;
 }
 .sidebar__headerRight {
@@ -37,7 +37,7 @@
 }
 .sidebar__searchContainer > .MuiSvgIcon-root {
   color: gray;
-  padding: 4px;
+  margin-left: 7px;
 }
 .sidebar__searchContainer > input {
   border: none;
@@ -45,14 +45,7 @@
   margin-left: 10px;
 }
 .sidebar__chats {
-  display: 1;
+  flex: 1;
   background-color: white;
   overflow: scroll;
-}
-.sidebarChat__info > h2 {
-  font-size: 16px;
-  margin-bottom: 8px;
-}
-.sidebarChat__info{
-  margin-left: 15px;
 }
