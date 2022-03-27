@@ -5,11 +5,16 @@ import Chat from "./components/Chat";
 import Sidebar from "./components/Sidebar";
 import { PUSHER_APP_KEY } from "./constants/global";
 import Pusher from "pusher-js";
-
-const PUSHER_KEY = PUSHER_APP_KEY;
+import axios from "./components/axios.js";
 
 function App() {
   const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    axios.get("/messages/sync").then((response) => {
+      setMessages(response.data);
+    });
+  }, []);
 
   useEffect(() => {
     const pusher = new Pusher(PUSHER_APP_KEY, { cluster: "eu" });
@@ -19,18 +24,18 @@ function App() {
     });
     return () => {
       channel.unbind_all();
-      channel.unbind_all();
+      channel.unsubscribe();
     };
   }, [messages]);
 
-  console.log(messages);
+  console.log("Mensajes ✉️", messages);
 
   return (
     <div className="app">
       <CssBaseline />
       <div className="app__body">
         <Sidebar />
-        <Chat />
+        <Chat messages={messages} />
       </div>
     </div>
   );
