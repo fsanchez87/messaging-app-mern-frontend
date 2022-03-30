@@ -6,9 +6,11 @@ import Sidebar from "./components/Sidebar";
 import { PUSHER_APP_KEY } from "./constants/global";
 import Pusher from "pusher-js";
 import axios from "./components/axios.js";
+import Login from "./components/Login";
 
 function App() {
   const [messages, setMessages] = useState([]);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     axios.get("/messages/sync").then((response) => {
@@ -33,10 +35,14 @@ function App() {
   return (
     <div className="app">
       <CssBaseline />
-      <div className="app__body">
-        <Sidebar />
-        <Chat messages={messages} />
-      </div>
+      {!user ? (
+        <Login />
+      ) : (
+        <div className="app__body">
+          <Sidebar />
+          <Chat messages={messages} />
+        </div>
+      )}
     </div>
   );
 }
